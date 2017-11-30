@@ -1,0 +1,14 @@
+# 编辑器
+.vscode/
+.launch.json
+
+# product
+build/
+
+# package
+node_modules
+
+# Logs
+logs
+*.log
+npm-debug.log*
