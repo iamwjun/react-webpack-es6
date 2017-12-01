@@ -5,7 +5,7 @@ const webpack = require('webpack');
 
 module.exports = {
     entry: {
-        app: './src/index.js',
+        app: './src/app.js',
     },
     module: {
         rules: [
@@ -14,14 +14,29 @@ module.exports = {
                 use: ExtractTextPlugin.extract({
                     fallback: "style-loader",
                     use: "css-loader",
-                    publicPath: "/dist/static/css"
+                    publicPath: "/dist"
                 })
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['env', "react", "es2015"]
+                    }
+                }
             }
         ]
     },
     plugins: [        
         new HtmlWebpackPlugin({
-            title: 'Caching'
+            title: 'Hello, world!',
+            minify:{
+				collapseWhitespace: false
+			},
+            template: 'src/index.ejs',
+			filename: 'index.html'
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'common' // Specify the common bundle's name.
@@ -35,6 +50,6 @@ module.exports = {
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
-        publicPath: '/'
+        publicPath: '/dist/'
     }
 };
