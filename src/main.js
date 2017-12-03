@@ -8,14 +8,9 @@ class App extends Component {
       return (          
          <Router>
              <Fragment>
-               <ul>
-                  <li><Link to={'/'}>Home</Link></li>
-                  <li><Link to={'/Login'}>Login</Link></li>
-               </ul>
-               <hr />               
                <Switch>
                   <Route exact path='/' component={Home} />
-                  <Route exact path='/Login' component={Login} />
+                  <Route exact path='/login' component={Login} />
                </Switch>
                </Fragment>
          </Router>         

@@ -19,10 +19,7 @@ class MyEditor extends React.Component {
 
 ReactDOM.render(
     <Fragment>
-        {/* <App />,
-        <MyEditor />,
-        <h1>Hello, world!</h1>, */}
-        <h3>Hello, world!</h3>
+        <App />
     </Fragment>,
     document.getElementById('root')
 );
