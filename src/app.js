@@ -1,25 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
-import {Editor, EditorState} from 'draft-js';
+import { Provider } from 'react-redux';
 import './assets/css/styles.css';
-import App from './main';
+import Routing from './router';
+import store from './store';
+import Layout from './page/Layout';
 
-class MyEditor extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {editorState: EditorState.createEmpty()};
-    this.onChange = (editorState) => this.setState({editorState});
-  }
-  render() {
-    return (
-      <Editor editorState={this.state.editorState} onChange={this.onChange} />
-    );
-  }
-}
+const app = document.getElementById('root')
 
-ReactDOM.render(
-    <Fragment>
-        <App />
-    </Fragment>,
-    document.getElementById('root')
-);
+ReactDOM.render(<Provider store={store}>
+    <Routing />
+</Provider>, app);

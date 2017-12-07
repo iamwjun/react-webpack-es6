@@ -14,7 +14,7 @@ module.exports = {
                 use: ExtractTextPlugin.extract({
                     fallback: "style-loader",
                     use: "css-loader",
-                    publicPath: "/dist"
+                    publicPath: "../"
                 })
             },
             {
@@ -23,15 +23,20 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['env', "react", "es2015"]
+                        presets: ['env', "react", "es2015", 'stage-2'],
+                        plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy'],
                     }
                 }
+            },
+            {
+                test: /\.(png|jpg)$/,
+                loader: 'url-loader?name=images/[name].[ext]&limit=1'
             }
         ]
     },
     plugins: [        
         new HtmlWebpackPlugin({
-            title: 'Hello, world!',
+            title: '新闻管理后台',
             minify:{
 				collapseWhitespace: false
 			},
@@ -41,15 +46,15 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             name: 'common' // Specify the common bundle's name.
         }),
-        new ExtractTextPlugin("styles.css"),
+        new ExtractTextPlugin("css/[name].css"),
         new webpack.HashedModuleIdsPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'runtime'
         })
     ],
     output: {
-        filename: '[name].bundle.js',
+        filename: 'js/[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
-        publicPath: '/dist/'
+        publicPath: '/static/'
     }
 };
