@@ -5,7 +5,7 @@ export function fetchBaseURL(){
 }
 
 export function fetchToken(){
-    return 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiI4MjA1ZGI1MDNiNjA0NWVjODk1NmM5YjcxODY2MjkzMSIsImV4cCI6MTUxMjcyMjA2OH0.M47foWiXMKhf69Mf2u8QOOqdk5ESXAMGbIUXdud-1ro';
+    return 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiI4MjA1ZGI1MDNiNjA0NWVjODk1NmM5YjcxODY2MjkzMSIsImV4cCI6MTUxMjc5MDM1Mn0.uGufXMZjELhzE_QEHWoMTHwXQ_KKaIebA6yC7UsaO5U';
 }
 
 export function fetchConfig () {
@@ -13,8 +13,7 @@ export function fetchConfig () {
         baseURL: fetchBaseURL(),
         headers: {
             'x-access-token': fetchToken(),
-            'Authorization': 'Basic aWFtazoxMjM0NTY=',
-            'content-type': 'multipart/form-data'
+            'Authorization': 'Basic aWFtazoxMjM0NTY='
         }
     }
 }
@@ -55,12 +54,13 @@ export function addTweet(
             title: newsTitle,
             body: body,
             summary: newsSummary,
+            release_time: newsReleaseTime,
             is_hot: newsIsHot,
             is_del: newsIsDel,
             news_type: newsType,
             news_keys: newsKeys,
             thumb:newsThumb
-        },getConfig(token))
+        }, fetchConfig())
         .then((response) => {
             if(response.data.status == '401'){
                 location.href = '/login';

@@ -3,7 +3,13 @@ import ReactDOM from 'react-dom';
 import { connect } from "react-redux";
 import { fetchUser } from "../actions/userActions";
 import { addTweet, fetchConfig, fetchBaseURL } from "../actions/tweetsActions";
+import Editor from '../components/Editor';
 import axios, { post } from 'axios'
+import DatePicker from 'antd/lib/date-picker';
+import message from 'antd/lib/message';
+import Select from 'antd/lib/select';
+const Option = Select.Option;
+import 'antd/dist/antd.min.css';
 
 @connect((store) => {
     return {
@@ -36,14 +42,6 @@ export default class Add extends Component {
     setNewsTitle(event) {
         this.setState({newsTitle: event.target.value});
     }
-
-    setNewsType(event) {
-        this.setState({newsType: event.target.value});
-    }
-
-    setNewsThumb(event) {
-        this.setState({newsThumb: event.target.value});
-    }
     
     setNewsKeys(event) {
         this.setState({newsKeys: event.target.value});
@@ -51,18 +49,6 @@ export default class Add extends Component {
 
     setNewsSummary(event) {
         this.setState({newsSummary: event.target.value});
-    }
-
-    setNewsReleaseTime(event) {
-        this.setState({newsReleaseTime: event.target.value});
-    }
-
-    setNewsIsHot(event) {
-        this.setState({newsIsHot: event.target.value});
-    }
-    
-    setNewsIsDel(event) {
-        this.setState({newsIsDel: event.target.value});
     }
 
     setBody(event) {
@@ -89,6 +75,11 @@ export default class Add extends Component {
     }
     
     addTweet(event) {
+        console.log(this.state)
+        if(this.state.newsTitle == '' || this.state.newsThumb == '' || this.state.newsSummary == '' || this.state.body == ''){
+            message.error('新闻标题、缩略图、摘要、新闻内容为必填项');
+            return false
+        }
         this.props.dispatch(addTweet(
             this.state.newsTitle,
             this.state.newsType,
@@ -99,7 +90,28 @@ export default class Add extends Component {
             this.state.newsIsHot,
             this.state.newsIsDel,
             this.state.body
-        ))
+        ))        
+    }
+
+    setNewsType(value) {
+        this.setState({newsType: value.key});
+    }
+
+    setNewsIsHot(value) {
+        this.setState({newsIsHot: value.key == '0' ? false : true});
+    }
+    
+    setNewsIsDel(value) {
+        this.setState({newsIsDel: value.key == '0' ? false : true});
+    }
+
+    onDatePicker(value, dateString) {
+        this.setState({newsReleaseTime: dateString});
+    }
+      
+    onOk(value) {
+        // console.log(this.state)
+        // console.log('onOk: ', dateString);
     }
 
     render() {
@@ -115,22 +127,10 @@ export default class Add extends Component {
                     <div className="control-group">
                         <label className="control-label">新闻类型 :</label>
                         <div className="controls">
-                            <div className="dropdown">
-                                <label className="input_select" style={{display: 'none'}}>
-                                    <select name="newsType" defaultValue={this.state.newsType} onChange={this.setNewsType.bind(this)}>
-                                        <option value="公司新闻">公司新闻</option>
-                                        <option value="行业新闻">行业新闻</option>
-                                    </select>
-                                </label>
-                                <span className="select" id="s_type" style={{width:'78px'}}><b>请选择</b><a href="javascript:;"><i className="icon_menu"></i></a></span>
-                                <div className="dropdown_list" id="l_type" style={{width: '116px', left: '-1px', top: '28px', display: 'none'}}>
-                                    <ul>
-                                        <li data-val="24">公司新闻</li>
-                                        <li data-val="23">行业新闻</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <span className="setips"> * 请选择新闻类型</span>
+                            <Select labelInValue defaultValue={{ key: '公司新闻' }} style={{ width: 120 }} onChange={this.setNewsType.bind(this)}>
+                                <Option value="公司新闻">公司新闻</Option>
+                                <Option value="行业新闻">行业新闻</Option>
+                            </Select>
                         </div>
                     </div>
                     <div className="control-group">
@@ -163,58 +163,38 @@ export default class Add extends Component {
                     <div className="control-group">
                         <label className="control-label">发布时间 :</label>
                         <div className="controls">
-                            <input type="datetime-local" name="newsReleaseTime" defaultValue={this.state.newsReleaseTime} onChange={this.setNewsReleaseTime.bind(this)} id="" className="span11 InputNone"/>
+                            {/* <input type="datetime-local" name="newsReleaseTime" defaultValue={this.state.newsReleaseTime} onChange={this.setNewsReleaseTime.bind(this)} id="" className="span11 InputNone"/> */}
+                            <DatePicker
+                                showTime
+                                format="YYYY-MM-DD HH:mm:ss"
+                                placeholder="指定发布时间"
+                                onChange={this.onDatePicker.bind(this)}
+                                onOk={this.onOk.bind(this)}
+                            />
                         </div>
                     </div>
                     <div className="control-group">
                         <label className="control-label">是否热点 :</label>
                         <div className="controls">
-                            <div className="dropdown">
-                                <label className="input_select" style={{display: 'none'}}>
-                                    <select name="newsIsHot">
-                                        <option value="0" defaultValue>是否热点</option>
-                                        <option value="1">是</option>
-                                        <option value="0">否</option>
-                                    </select>
-                                </label>
-                                <span className="select" style={{width:'98px'}}><b>否</b><a href="javascript:;"><i className="icon_menu"></i></a></span>
-                                <div className="dropdown_list" style={{width: '116px', left: '-1px', top: '28px', display: 'none'}}>
-                                    <ul>
-                                        <li data-val="0">是否热点</li>
-                                        <li data-val="1">是</li>
-                                        <li data-val="0">否</li>
-                                    </ul>
-                                </div>
-                            </div>
+                            <Select labelInValue defaultValue={{ key: '否' }} style={{ width: 120 }} onChange={this.setNewsIsHot.bind(this)}>
+                                <Option value="0">否</Option>
+                                <Option value="1">是</Option>
+                            </Select>
                         </div>
                     </div>
                     <div className="control-group">
                         <label className="control-label">标记删除 :</label>
                         <div className="controls">
-                            <div className="dropdown">
-                                <label className="input_select" style={{display: 'none'}}>
-                                    <select name="newsIsDel">
-                                        <option value="0" defaultValue>标记删除</option>
-                                        <option value="1">是</option>
-                                        <option value="0">否</option>
-                                    </select>
-                                </label>
-                                <span className="select" style={{width:'98px'}}><b>否</b><a href="javascript:;"><i className="icon_menu"></i></a></span>
-                                <div className="dropdown_list" style={{width: '116px', left: '-1px', top: '28px', display: 'none'}}>
-                                    <ul>
-                                        <li data-val="0">标记删除</li>
-                                        <li data-val="1">是</li>
-                                        <li data-val="0">否</li>
-                                    </ul>
-                                </div>
-                            </div>
+                            <Select labelInValue defaultValue={{ key: '否' }} style={{ width: 120 }} onChange={this.setNewsIsDel.bind(this)}>
+                                <Option value="0">否</Option>
+                                <Option value="1">是</Option>
+                            </Select>
                         </div>
                     </div>
                     <div className="control-group">
                         <label className="control-label">新闻内容 :</label>
                         <div className="controls">
-                            <input type="text" className="InputNone" name="body" defaultValue={this.state.body} onChange={this.setBody.bind(this)} placeholder="新闻标题"/><span className="setips"> * 请输入新闻标题</span>
-                            {/* <script id="container" name="content" type="text/plain" style={{width:'100%', height:'360px'}}></script> */}
+                            <Editor handler={this.setBody.bind(this)} value={this.state.body} />
                         </div>
                     </div>
                     <div className="form-actions">
