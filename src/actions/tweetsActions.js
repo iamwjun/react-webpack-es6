@@ -5,7 +5,7 @@ export function fetchBaseURL(){
 }
 
 export function fetchToken(){
-    return 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiI4MjA1ZGI1MDNiNjA0NWVjODk1NmM5YjcxODY2MjkzMSIsImV4cCI6MTUxMjc5MDM1Mn0.uGufXMZjELhzE_QEHWoMTHwXQ_KKaIebA6yC7UsaO5U';
+    return 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiJlMzZlNGNiY2IwYTk0YzdlODMxYmFhNDQ5N2U4MDVlNyIsImV4cCI6MTUxMzMwODUzMX0.7OhjLyr1WcNmiVoEc6LL1jVkkVvQeWqXBjolPaEpmAw';
 }
 
 export function fetchConfig () {
@@ -22,7 +22,7 @@ export function fetchTweets() {
     return function(dispatch) {
         dispatch({type: "FETCH_TWEETS"});
 
-        axios.get("/news", fetchConfig())
+        axios.get("/api/news", fetchConfig())
         .then((response) => {
             if(response.data.status == '401'){
                 location.href = '/login';
