@@ -184,20 +184,18 @@ strong,b,.b {
 
 #login-button{
     cursor: pointer;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    position: fixed;
+    top: 50%;
+    right: 50%;
+    margin-top: -50px;
     padding: 30px;
-    margin: auto;
     width: 100px;
     height: 100px;
     border-radius: 50%;
     background: rgba(3,3,3,.8);
     overflow: hidden;
     opacity: 0.4;
-    box-shadow: 10px 10px 30px #000;    
+    box-shadow: 10px 10px 30px #000;
 }
 
 #login-button img{
@@ -209,23 +207,47 @@ strong,b,.b {
 
 #login-code{
     cursor: pointer;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;    
     width: 200px;
     height: 200px;
     border-radius: 0;
     overflow: hidden;
-    box-shadow: 10px 10px 30px #000;
 }
 
-#login-code img{
+.qrcode{
+    display: block;
     width: 200px;
+    height: 200px;
     vertical-align: middle;
-    border-style: none;    
+    border-style: none;
+    padding: 8px;
+    background-color: #fff; 
+}
+
+.button-base{
+    margin-right: -50px;
+    transition: all 1s ease-in-out;
+}
+
+.button-action{
+    margin-right: 50px;
+    transition: all 1s ease-in-out;
+}
+
+.login-base{
+    opacity: 0;
+    margin-left: -100px;
+    transition: all 1s ease-in-out;
+}
+
+.login-action{
+    margin-left: 0;
+    opacity: 1;
+    display: block;
+    transition: all 1s ease-in-out;
 }
 
 .clear {
