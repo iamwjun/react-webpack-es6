@@ -5,7 +5,7 @@ export function fetchBaseURL(){
 }
 
 export function fetchToken(){
-    return 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiJlMzZlNGNiY2IwYTk0YzdlODMxYmFhNDQ5N2U4MDVlNyIsImV4cCI6MTUxMzMwODUzMX0.7OhjLyr1WcNmiVoEc6LL1jVkkVvQeWqXBjolPaEpmAw';
+    return 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiIyNDg3ZjFjZS1hOTAzLTRkOTctYmZhOC0zZDZiMDBlMmQ4ZDciLCJleHAiOjE1MTM0MzIzOTV9.SAndApzp4RjNT9-920bEiF6IiI8TMT_JxFnn9dpZsEg';
 }
 
 export function fetchConfig () {
