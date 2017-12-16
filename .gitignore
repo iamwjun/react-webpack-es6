@@ -3,7 +3,7 @@
 .launch.json
 
 # product
-build/
+dist/
 
 # package
 node_modules
