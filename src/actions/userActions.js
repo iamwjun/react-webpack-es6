@@ -1,17 +1,26 @@
 import io from 'socket.io-client';
+import * as Cookies from 'js-cookie';
 
 export function fetchToken() {
     return function(dispatch) {
         dispatch({type: "FETCH_TOKEN"});
 
         try{
-            let socket = io.connect('http://' + document.domain + ':5000/test');
+            let port = 5000;
+            let socket = io.connect('http://' + document.domain + ':' + port + '/test');
             socket.on('connect', function(){
-                dispatch({type: "FETCH_TOKEN", payload: socket.id})
+                dispatch({type: "FETCH_TOKEN", payload: {
+                    sid: socket.id,
+                    namespace: socket.nsp
+                }})
             })
             socket.emit('response', {data: 'I\'m connected!'});
             socket.on('response', function(data){
-                dispatch({type: "FETCH_TOKEN", payload: data})
+                console.log(data)
+                if(data.status == '200'){
+                    Cookies.set('token', data.token, { expires: 1 });
+                    location.href = '/';
+                }
             })
         }catch(exception){
             console.log('exception')

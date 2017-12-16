@@ -10,7 +10,8 @@ import { subscribeToTimer } from '../components/socket.io-client';
 
 @connect((store) => {
     return {
-        user: store.user.token
+        user: store.user.user,
+        fetchToken: store.user.fetched
     };
 })
 
@@ -20,8 +21,10 @@ export default class Login extends Component {
         super(props);
         this.state = {
             connect: true,
-            enter: true
+            enter: true,
+            sid: ''
         }
+        this.props.dispatch(fetchToken())
     }
 
     toggleAnimate(){
@@ -29,31 +32,28 @@ export default class Login extends Component {
             enter: !this.state.enter,
             connect: false
         })
-        if(this.state.enter && this.state.connect){
-            this.props.dispatch(fetchToken())
-        }
+        console.log(this.state)
     }
 
-    fetchToken() {
+    fetchToken() {        
         this.setState({
             enter: !this.state.enter,
             connect: false
         })
-        if(this.state.enter && this.state.connect){
-            this.props.dispatch(fetchToken())
-            
-        }
+        // if(this.state.enter && this.state.connect){
+        //     this.props.dispatch(fetchToken())
+        // }
+
+        this.setState({sid: this.props.user.sid})
     }
     
-    render() {
-        const { token } = this.props;
-
+    render() {        
         return (
             <div id="login">
                 <div key="1" id="login-code" className={this.state.enter ? 'login-base' : 'login-action'} onClick={this.fetchToken.bind(this)}>
-                    <div className="qrcode">
+                    <div className="qrcode">{this.state.id}
                     <QRCode
-                        value={"http://wx.eeparking.com/demo2.0/parking/confirm.php?sid="}
+                        value={"http://wx.eeparking.com/demo2.0/parking/confirm.php?sid="+ this.state.sid}
                         size={184}
                         bgColor={"#fff"}
                         fgColor={"#333"}
@@ -61,7 +61,7 @@ export default class Login extends Component {
                     />
                     </div>
                 </div>
-                <div key="2" id="login-button" className={this.state.enter ? 'button-base' : 'button-action'} onClick={this.toggleAnimate.bind(this)}><img src={img}></img></div>
+                <div key="2" id="login-button" className={this.state.enter ? 'button-base' : 'button-action'} onClick={this.fetchToken.bind(this)}><img src={img}></img></div>
             </div>
         );
     }

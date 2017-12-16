@@ -26,7 +26,7 @@ export default class Index extends Component {
     
     fetchTweets() {
         this.props.dispatch(fetchTweets())
-        console.log(this.props)
+        // console.log(this.props)
     }
     
     render() {

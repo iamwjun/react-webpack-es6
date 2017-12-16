@@ -1,17 +1,17 @@
 export default function reducer(state={
-    token: [],
-    user: {
-        id: null,
-        name: null,
-        age: null,
-    },
+    user: [],
     fetching: false,
     fetched: false,
     error: null,
   }, action) {
     switch (action.type) {
         case "FETCH_TOKEN":{
-            return {...state, user: {}}
+            return {
+                ...state,
+                fetching: false,
+                fetched: true,
+                user: action.payload,
+            }
         }
         case "FETCH_USER": {
             return {...state, fetching: true}

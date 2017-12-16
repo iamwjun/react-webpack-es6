@@ -1,11 +1,13 @@
 import axios from "axios";
+import * as Cookies from 'js-cookie';
 
 export function fetchBaseURL(){
     return 'http://127.0.0.1:5000';
 }
 
 export function fetchToken(){
-    return 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiIyNDg3ZjFjZS1hOTAzLTRkOTctYmZhOC0zZDZiMDBlMmQ4ZDciLCJleHAiOjE1MTM0MzIzOTV9.SAndApzp4RjNT9-920bEiF6IiI8TMT_JxFnn9dpZsEg';
+    return Cookies.get('token')
+    // return 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiIyNDg3ZjFjZS1hOTAzLTRkOTctYmZhOC0zZDZiMDBlMmQ4ZDciLCJleHAiOjE1MTM0MzIzOTV9.SAndApzp4RjNT9-920bEiF6IiI8TMT_JxFnn9dpZsEg';
 }
 
 export function fetchConfig () {
