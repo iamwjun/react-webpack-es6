@@ -5,7 +5,7 @@ import code from '../assets/images/login.png';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { fetchUser, fetchToken } from '../actions/userActions';
-import QRCode from 'qrcode.react';
+import Code from '../components/Code';
 import { subscribeToTimer } from '../components/socket.io-client';
 
 @connect((store) => {
@@ -21,10 +21,9 @@ export default class Login extends Component {
         super(props);
         this.state = {
             connect: true,
-            enter: true,
-            sid: ''
+            enter: true
         }
-        this.props.dispatch(fetchToken())
+        // this.props.dispatch(fetchToken())
     }
 
     toggleAnimate(){
@@ -40,25 +39,21 @@ export default class Login extends Component {
             enter: !this.state.enter,
             connect: false
         })
-        // if(this.state.enter && this.state.connect){
-        //     this.props.dispatch(fetchToken())
-        // }
-
+        if(this.state.enter && this.state.connect){
+            this.props.dispatch(fetchToken())
+        }
         this.setState({sid: this.props.user.sid})
+        console.log(this.state.sid)
     }
     
-    render() {        
-        return (
+    // https://github.com/reactjs/redux/issues/1676
+    render() {  
+        const qrcode = !this.state.connect ? <Code sid={this.state.sid}/> : '';      
+        return (          
             <div id="login">
                 <div key="1" id="login-code" className={this.state.enter ? 'login-base' : 'login-action'} onClick={this.fetchToken.bind(this)}>
-                    <div className="qrcode">{this.state.id}
-                    <QRCode
-                        value={"http://wx.eeparking.com/demo2.0/parking/confirm.php?sid="+ this.state.sid}
-                        size={184}
-                        bgColor={"#fff"}
-                        fgColor={"#333"}
-                        level={"M"}
-                    />
+                    <div className="qrcode">
+                        {qrcode}
                     </div>
                 </div>
                 <div key="2" id="login-button" className={this.state.enter ? 'button-base' : 'button-action'} onClick={this.fetchToken.bind(this)}><img src={img}></img></div>
