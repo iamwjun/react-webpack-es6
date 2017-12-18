@@ -33,6 +33,7 @@ export function fetchTweets() {
             }            
         })
         .catch((err) => {
+            location.href = '/login';
             dispatch({type: "FETCH_TWEETS_REJECTED", payload: err})
         })
     }
