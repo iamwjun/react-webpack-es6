@@ -21,9 +21,10 @@ export default class Login extends Component {
         super(props);
         this.state = {
             connect: true,
-            enter: true
+            enter: true,
+            sid: ''
         }
-        // this.props.dispatch(fetchToken())
+        this.props.dispatch(fetchToken())
     }
 
     toggleAnimate(){
@@ -39,21 +40,20 @@ export default class Login extends Component {
             enter: !this.state.enter,
             connect: false
         })
-        if(this.state.enter && this.state.connect){
-            this.props.dispatch(fetchToken())
-        }
+        // if(this.state.enter && this.state.connect){
+        //     this.props.dispatch(fetchToken())
+        // }
         this.setState({sid: this.props.user.sid})
-        console.log(this.state.sid)
+        // this.forceUpdate()
     }
-    
-    // https://github.com/reactjs/redux/issues/1676
-    render() {  
-        const qrcode = !this.state.connect ? <Code sid={this.state.sid}/> : '';      
+
+    render() {
+        const qrcode = this.state.code ? <Code sid={this.state.sid}/> : '';      
         return (          
             <div id="login">
                 <div key="1" id="login-code" className={this.state.enter ? 'login-base' : 'login-action'} onClick={this.fetchToken.bind(this)}>
                     <div className="qrcode">
-                        {qrcode}
+                        <Code sid={this.state.sid}/>
                     </div>
                 </div>
                 <div key="2" id="login-button" className={this.state.enter ? 'button-base' : 'button-action'} onClick={this.fetchToken.bind(this)}><img src={img}></img></div>

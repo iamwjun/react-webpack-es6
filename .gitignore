@@ -1,9 +1,9 @@
-# 编辑器
+# VS code cache
 .vscode/
 .launch.json
 
 # product
-dist/
+dist
 
 # package
 node_modules

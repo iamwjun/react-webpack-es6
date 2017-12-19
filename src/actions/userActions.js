@@ -39,7 +39,7 @@ export function fetchToken() {
                 }
             });
         }catch(exception){
-            console.log('exception')
+            console.log(exception)
         }finally{   
             console.log('fail')
         }  
