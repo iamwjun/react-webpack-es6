@@ -6,7 +6,7 @@ import Page from './Page';
 class List extends Component {
     constructor(props) {
         super(props);
-        console.log(this.props.data)
+        // console.log(this.props.data)
     }
     
     handleClick() {

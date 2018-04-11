@@ -22,7 +22,7 @@ export function fetchConfig () {
 
 export function fetchTweets() {
     return function(dispatch) {
-        dispatch({type: "FETCH_TWEETS"});
+        dispatch({type: "GET_TWEET"});
 
         axios.get("/api/news", fetchConfig())
         .then((response) => {
@@ -53,7 +53,7 @@ export function addTweet(
     return function(dispatch) {
         dispatch({type: "ADD_TWEET"});
 
-        axios.post("/news", {
+        axios.post("/api/news", {
             title: newsTitle,
             body: body,
             summary: newsSummary,
@@ -85,18 +85,37 @@ export function uploadImage(file) {
 
         const formData = new FormData();
         formData.append('photo',file)
-        axios.post("/uploadimage", {
+        axios.post("/api/uploadimage", {
             photo: formData,
         }, getConfig(token))
         .then((response) => {
             if(response.data.status == '401'){
-                location.href = '/login';
+                // location.href = '/login';
             }else{
                 dispatch({type: "FETCH_TWEETS_FULFILLED", payload: response.data.path})
             }            
         })
         .catch((err) => {
             dispatch({type: "FETCH_TWEETS_REJECTED", payload: err})
+        })
+    }
+}
+
+export function getTweet(id) {    
+    return function(dispatch) {
+        dispatch({type: "FETCH_TWEETS"});
+
+        axios.get(`/api/news/${id}`, fetchConfig())
+        .then((response) => {
+            if(response.data.status == '401'){
+                location.href = '/login';
+            }else{
+                dispatch({type: "FETCH_TWEETS_FULFILLED", payload: response.data.news})
+            }            
+        })
+        .catch((err) => {
+            location.href = '/login';
+            dispatch({type: "FETCH_TWEETS_FULFILLED", payload: err})
         })
     }
 }

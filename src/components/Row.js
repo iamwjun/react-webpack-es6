@@ -20,7 +20,7 @@ class Row extends Component {
                 <td align="center">{tweet.is_hot ? '是' : '否'}</td>
                 <td align="center">{tweet.is_del ? '是' : '否'}</td>
                 <td align="center" className="dj_otherText">
-                    <a href="#">修改</a>&nbsp;
+                    <a href={'/edit/'+ tweet.public_id}>修改</a>&nbsp;
                     <a href="#">删除</a>&nbsp;
                 </td>
             </tr>)

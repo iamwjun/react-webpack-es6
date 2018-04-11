@@ -63,15 +63,17 @@ export default class Add extends Component {
                     isShow: !prevState.isShow
                 }));
             }else if(response.data.status == '401'){
-                location.href = '/login';
+                // location.href = '/login';
             }
+        }).catch((err) => {
+            // location.href = '/login';
         })
     }
 
     fileUpload(file){
         const formData = new FormData();
         formData.append('photo', file);
-        return  post('/uploadimage', formData, this.state.config)
+        return  post('/api/uploadimage', formData, this.state.config)
     }
     
     addTweet(event) {

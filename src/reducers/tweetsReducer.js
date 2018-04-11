@@ -20,10 +20,13 @@ export default function reducer(state={
           tweets: action.payload,
         }
       }
+      case "GET_TWEET": {
+        return {...state, fetching: true}
+      }
       case "ADD_TWEET": {
         return {
           ...state,
-          tweets: [...state.tweets, action.payload],
+          tweets: action.payload,
         }
       }
       case "UPDATE_TWEET": {
