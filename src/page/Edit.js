@@ -1,16 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from "react-redux";
-import { fetchUser } from "../actions/userActions";
-import { addTweet, fetchConfig, fetchBaseURL, getTweet } from "../actions/tweetsActions";
-import Editor from '../components/Editor';
-import axios, { post } from 'axios'
-import DatePicker from 'antd/lib/date-picker';
-import message from 'antd/lib/message';
-import Select from 'antd/lib/select';
-const Option = Select.Option;
-import 'antd/dist/antd.min.css';
-import Form from '../components/Form';
+import { getTweet } from "../actions/tweetsActions";
+import Form from "../components/Form";
 
 @connect((store) => {
     return {

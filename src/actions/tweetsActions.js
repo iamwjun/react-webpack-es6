@@ -20,6 +20,16 @@ export function fetchConfig () {
     }
 }
 
+export function getParameter(source, condition){
+    let parameters = {};
+        
+    Object.keys(source).forEach(function(keys){
+        condition.includes(keys) ? parameters[keys] = source[keys] : '';
+    });
+
+    return parameters;
+}
+
 export function fetchTweets() {
     return function(dispatch) {
         dispatch({type: "GET_TWEET"});
@@ -39,31 +49,13 @@ export function fetchTweets() {
     }
 }
 
-export function addTweet(
-    newsTitle,
-    newsType,
-    newsThumb,
-    newsKeys,
-    newsSummary,
-    newsReleaseTime,
-    newsIsHot,
-    newsIsDel,
-    body
-) {
+export function addTweet(source) {
     return function(dispatch) {
         dispatch({type: "ADD_TWEET"});
 
-        axios.post("/api/news", {
-            title: newsTitle,
-            body: body,
-            summary: newsSummary,
-            release_time: newsReleaseTime,
-            is_hot: newsIsHot,
-            is_del: newsIsDel,
-            news_type: newsType,
-            news_keys: newsKeys,
-            thumb:newsThumb
-        }, fetchConfig())
+        let params = getParameter(source, ['title', 'body', 'summary', 'release_time', 'is_hot', 'is_del', 'news_type', 'news_keys', 'thumb']);
+
+        axios.post("/api/news", params, fetchConfig())
         .then((response) => {
             if(response.data.status == '401'){
                 location.href = '/login';
@@ -110,7 +102,7 @@ export function getTweet(id) {
             if(response.data.status == '401'){
                 location.href = '/login';
             }else{
-                dispatch({type: "FETCH_TWEETS_FULFILLED", payload: response.data.news})
+                dispatch({type: "FETCH_TWEETS_FULFILLED", payload: {...response.data.news, action: "update"}})
             }            
         })
         .catch((err) => {
@@ -120,13 +112,25 @@ export function getTweet(id) {
     }
 }
 
-export function updateTweet(id, text) {
-    return {
-        type: 'UPDATE_TWEET',
-        payload: {
-            id,
-            text,
-        },
+export function updateTweet(source) {
+    return function(dispatch) {
+        dispatch({type: "UPDATE_TWEET"});
+
+        let params = getParameter(source, ['title', 'body', 'summary', 'release_time', 'is_hot', 'is_del', 'news_type', 'news_keys', 'thumb']);
+
+        axios.put(`/api/news/${source.public_id}`, params, fetchConfig())
+        .then((response) => {
+            if(response.data.status == '401'){
+                location.href = '/login';
+            }else if(response.data.status == '200'){
+                location.href = '/';                
+            }else{
+                dispatch({type: "FETCH_TWEETS_FULFILLED", payload: response.data.message})
+            }
+        })
+        .catch((err) => {
+            dispatch({type: "FETCH_TWEETS_REJECTED", payload: err})
+        })
     }
 }
 
