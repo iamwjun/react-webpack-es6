@@ -9,7 +9,7 @@ class Row extends Component {
     render() {
     
         const mappedNews = this.props.data.map(tweet => 
-            <tr key={tweet.id} className="even">
+            <tr key={tweet.id} className={tweet.id%2 == 0 ? "even" : "odd"}>
                 <td align="center"><input type="checkbox" name="delcheck[]" className="checkbox" defaultValue={tweet.id} data-value={tweet.id} /></td>
                 <td align="center">{tweet.id}</td>
                 <td className="dj_otherText"><a href="#" target="_blank" title="#">{tweet.title}</a></td>                        

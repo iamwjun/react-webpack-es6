@@ -4,6 +4,7 @@ import Index from './page/Index';
 import Login from './page/Login';
 import Add from './page/Add';
 import Edit from './page/Edit';
+import Filter from './page/Filter';
 
 class Routing extends Component {
     render() {
@@ -14,6 +15,7 @@ class Routing extends Component {
                     <Route exact path='/login' component={Login} />
                     <Route exact path='/add' component={Add} />
                     <Route exact path='/edit/:id' component={Edit} />
+                    <Route exact path='/filter' component={Filter} />
                 </Switch>
             </Router>
         );

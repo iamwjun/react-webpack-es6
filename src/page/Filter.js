@@ -17,7 +17,7 @@ import List from '../components/List';
 export default class Index extends Component {
     constructor(props) {
         super(props);
-        this.props.dispatch(fetchTweets('index'))
+        this.props.dispatch(fetchTweets('filter'))
     }
 
     componentWillMount() {
@@ -34,7 +34,7 @@ export default class Index extends Component {
         
         if (!tweets.length) {
             // return <button onClick={this.fetchTweets.bind(this)}>load tweets</button>
-            return <div>loading...</div>
+            return <div>没有更多记录...</div>
         }
         
         // const mappedTweets = tweets.map(tweet => <li key={tweet.id}>{tweet.title}</li>)

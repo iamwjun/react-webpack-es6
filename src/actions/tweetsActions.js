@@ -30,20 +30,42 @@ export function getParameter(source, condition){
     return parameters;
 }
 
-export function fetchTweets() {
+export function getParam(array){
+    let param = {};
+    let urls = new URL(window.location.href);
+
+    array.forEach(function(e){
+        param[e] = Number(urls.searchParams.get(e)) || 1;
+    })
+
+    return param;
+}
+
+export function fetchTweets(search) {
     return function(dispatch) {
         dispatch({type: "GET_TWEET"});
 
-        axios.get("/api/news", fetchConfig())
+        let param;
+
+        switch (search) {
+            case 'index':
+                param = {page_size: 20, page_num: 1};
+                break;
+            case 'filter':
+                param = getParam(['page_size', 'page_num']);
+                break;
+        }
+
+        axios.post("/api/filter", param, fetchConfig())
         .then((response) => {
             if(response.data.status == '401'){
-                location.href = '/login';
+                //location.href = '/login';
             }else{
                 dispatch({type: "FETCH_TWEETS_FULFILLED", payload: response.data.news})
             }            
         })
         .catch((err) => {
-            location.href = '/login';
+            // location.href = '/login';
             dispatch({type: "FETCH_TWEETS_REJECTED", payload: err})
         })
     }
