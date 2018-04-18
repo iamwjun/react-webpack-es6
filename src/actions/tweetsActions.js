@@ -59,9 +59,9 @@ export function fetchTweets(search) {
         axios.post("/api/filter", param, fetchConfig())
         .then((response) => {
             if(response.data.status == '401'){
-                //location.href = '/login';
+                location.href = '/login';
             }else{
-                dispatch({type: "FETCH_TWEETS_FULFILLED", payload: response.data.news})
+                dispatch({type: "FETCH_TWEETS_FULFILLED", payload: response.data});
             }            
         })
         .catch((err) => {

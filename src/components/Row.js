@@ -6,6 +6,10 @@ class Row extends Component {
         super(props);
     }
 
+    delete(value){
+        this.props.data = []
+    }
+
     render() {
     
         const mappedNews = this.props.data.map(tweet => 
@@ -21,7 +25,7 @@ class Row extends Component {
                 <td align="center">{tweet.is_del ? '是' : '否'}</td>
                 <td align="center" className="dj_otherText">
                     <a href={'/edit/'+ tweet.public_id}>修改</a>&nbsp;
-                    <a href="#">删除</a>&nbsp;
+                    <a href="#" onClick={this.delete.bind(this)}>删除</a>&nbsp;
                 </td>
             </tr>)
     

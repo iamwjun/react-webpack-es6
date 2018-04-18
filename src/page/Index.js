@@ -32,9 +32,9 @@ export default class Index extends Component {
     render() {
         const { user, tweets } = this.props;
         
-        if (!tweets.length) {
+        if (tweets.news && !tweets.news.length) {
             // return <button onClick={this.fetchTweets.bind(this)}>load tweets</button>
-            return <div>loading...</div>
+            return <div>没有更多数据了...</div>
         }
         
         // const mappedTweets = tweets.map(tweet => <li key={tweet.id}>{tweet.title}</li>)
@@ -44,7 +44,7 @@ export default class Index extends Component {
                 <Fragment>
                     <Filter />
                     <Query />
-                    <List data={tweets}/>
+                    <List data={tweets.news ? tweets.news : []} count={tweets.count ? tweets.count : 0}/>
                 </Fragment>
             </div>
         );

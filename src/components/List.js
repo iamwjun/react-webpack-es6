@@ -40,7 +40,7 @@ class List extends Component {
                     <input type="submit" name="del" className="btn_net_common" defaultValue="删除"/>              
                 </div>
                 <div className="new_cutpage fn-clear">
-                    <Page />
+                    <Page count={this.props.count}/>
                 </div>
         </div>
         );
