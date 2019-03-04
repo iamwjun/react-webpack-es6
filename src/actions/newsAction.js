@@ -19,12 +19,12 @@ export function fetchNews() {
             if(response.data.status == '401'){
                 location.href = '/login';
             }else{
-                console.log(response.data.news);
+                //console.log(response.data.news);
                 return response.data.news;
             }            
         })
         .catch((err) => {
-            console.log(err)
+            //console.log(err)
         })
     }
 }

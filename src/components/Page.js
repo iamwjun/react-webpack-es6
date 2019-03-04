@@ -6,7 +6,7 @@ class Page extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            page_size: 20,
+            page_size: 15,
             page_num: 1,
             gotoPage: 1
         }
@@ -32,7 +32,7 @@ class Page extends Component {
         let fanye;
         let count = Math.ceil(this.props.count/this.state.page_size);
 
-        console.log('条件：'+ count, this.state.page_num);
+        console.log('条件：'+ count, this.state.page_num, this.state.page_size);
 
         if(this.state.page_num && this.state.page_num == 1){
             fanye = 
