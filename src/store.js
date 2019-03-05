@@ -3,7 +3,7 @@ import { applyMiddleware, createStore } from "redux"
 import { createLogger } from 'redux-logger';
 import thunk from "redux-thunk"
 import promise from "redux-promise-middleware"
-import * as promise from 'redux-promise'
+// import * as promise from 'redux-promise'
 
 import reducer from "./reducers"
 

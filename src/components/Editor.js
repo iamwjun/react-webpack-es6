@@ -8,16 +8,16 @@ class Editor extends Component {
     
     render() {
         return (
-            <div class="toolbar">
-                <div class="toolbarlayer" style={{display:'none'}}></div>
-                <div class="toolbarlayer" style={{display:'none'}}></div>
-                <div class="edy-tb">
-                    <button class="edy-tb-cmd" title="Bold" unselectable="on">
+            <div className="toolbar">
+                <div className="toolbarlayer" style={{display:'none'}}></div>
+                <div className="toolbarlayer" style={{display:'none'}}></div>
+                <div className="edy-tb">
+                    <button className="edy-tb-cmd" title="Bold" unselectable="on">
                         <svg width="21" height="21" xmlns="http://www.w3.org/2000/svg">
                             <path d="M15.232 10.346c-.181-.535-.437-1.005-.767-1.41-.331-.406-.731-.727-1.201-.962-.472-.235-1.002-.355-1.589-.355-.597 0-1.102.118-1.514.354-.412.236-.732.497-.959.777h-.034v-5.25h-2.668v12.764h2.458v-1.099h.032c.26.428.632.757 1.114.987.484.232.996.348 1.541.348.605 0 1.147-.123 1.625-.37.479-.248.883-.578 1.215-.987.328-.412.582-.888.757-1.429.172-.54.26-1.103.26-1.688-.002-.585-.092-1.144-.27-1.68zm-2.425 2.481c-.08.265-.203.499-.365.7-.162.203-.363.367-.602.49-.24.125-.518.187-.832.187-.303 0-.574-.062-.813-.187s-.442-.287-.61-.49c-.168-.201-.298-.434-.39-.69-.093-.26-.139-.524-.139-.795s.045-.533.137-.792c.093-.26.223-.492.39-.693.169-.201.372-.365.61-.488.24-.125.51-.187.813-.187.314 0 .594.062.832.187.237.123.439.283.604.48.162.196.283.426.365.686.08.258.121.521.121.791.002.272-.039.536-.121.801z" fill="#1B2124"></path>
                         </svg>
                     </button>
-                    <button class="edy-tb-cmd" title="Italic" unselectable="on">
+                    <button className="edy-tb-cmd" title="Italic" unselectable="on">
                         <svg width="21" height="21" xmlns="http://www.w3.org/2000/svg">
                             <g transform="translate(7 3)" fill="#1B2124">
                                 <path d="M2.926 14l1.765-8.912h-2.448l-1.743 8.912h2.426z" id="Shape"></path>
@@ -25,7 +25,7 @@ class Editor extends Component {
                             </g>
                         </svg>
                     </button>
-                    <button class="edy-tb-cmd" title="Underline" unselectable="on">
+                    <button className="edy-tb-cmd" title="Underline" unselectable="on">
                         <svg width="21" height="21" xmlns="http://www.w3.org/2000/svg">
                             <title>Slice 1</title>
                             <g transform="translate(6 5)" fill="#1B2124">
@@ -34,18 +34,18 @@ class Editor extends Component {
                             </g>
                         </svg>
                     </button>
-                    <div class="edy-tb-menucontainer">
-                        <button class="edy-tb-act edy-tb-paragraph edy-tb-g" title="Font size" style={{fontSize:'17px'}}>↓</button>
-                        <div class="edy-tb-stylemenu" style={{display: 'none'}}>
-                            <button class="edy-tb-cmd font-size-xx-small" data-value="12px" unselectable="on">xx-small</button>
-                            <button class="edy-tb-cmd font-size-x-small" data-value="14px" unselectable="on">x-small</button>
-                            <button class="edy-tb-cmd font-size-small" data-value="16px" unselectable="on">small</button>
-                            <button class="edy-tb-cmd font-size-medium" data-value="18px" unselectable="on">medium</button>
-                            <button class="edy-tb-cmd font-size-large" data-value="20px" unselectable="on">large</button>
+                    <div className="edy-tb-menucontainer">
+                        <button className="edy-tb-act edy-tb-paragraph edy-tb-g" title="Font size" style={{fontSize:'17px'}}>↓</button>
+                        <div className="edy-tb-stylemenu" style={{display: 'none'}}>
+                            <button className="edy-tb-cmd font-size-xx-small" data-value="12px" unselectable="on">xx-small</button>
+                            <button className="edy-tb-cmd font-size-x-small" data-value="14px" unselectable="on">x-small</button>
+                            <button className="edy-tb-cmd font-size-small" data-value="16px" unselectable="on">small</button>
+                            <button className="edy-tb-cmd font-size-medium" data-value="18px" unselectable="on">medium</button>
+                            <button className="edy-tb-cmd font-size-large" data-value="20px" unselectable="on">large</button>
                         </div>
                     </div>
-                <div class="edy-tb-menucontainer">
-                    <button class="edy-tb-act edy-tb-color edy-tb-g" title="Text color">
+                <div className="edy-tb-menucontainer">
+                    <button className="edy-tb-act edy-tb-color edy-tb-g" title="Text color">
                         <svg width="21" height="21" xmlns="http://www.w3.org/2000/svg">
                             <g transform="translate(1 1)" fill="none">
                                 <circle stroke="#979797" cx="9.5" cy="9.5" r="9.5" fill="" style={{fill: 'rgb(255, 255, 255)'}}></circle>
@@ -53,38 +53,38 @@ class Editor extends Component {
                             </g>
                         </svg>
                     </button>
-                    <div class="edy-tb-dropdown edy-tb-color-modal" style={{display: 'none'}}>
-                        <div class="edy-tb-color-tab-content">
-                            <div class="edy-colorpicker">
-                                <div class="edy-colorpicker-colors" data-wysihtml5-command-group="foreColor">
-                                    <div data-wysihtml5-command="foreColor" data-value="rgb(0,0,0)" style={{border:'1px solid #ccc'}} unselectable="on" class="">
-                                        <svg width="100%" height="100%" class="no-color">
+                    <div className="edy-tb-dropdown edy-tb-color-modal" style={{display: 'none'}}>
+                        <div className="edy-tb-color-tab-content">
+                            <div className="edy-colorpicker">
+                                <div className="edy-colorpicker-colors" data-wysihtml5-command-group="foreColor">
+                                    <div data-wysihtml5-command="foreColor" data-value="rgb(0,0,0)" style={{border:'1px solid #ccc'}} unselectable="on" className="">
+                                        <svg width="100%" height="100%" className="no-color">
                                             <line x1="0" y1="100%" x2="100%" y2="0" style={{stroke:'rgba(255,0,0,0.8)', strokeWidth:'1'}}></line>
                                         </svg>
                                     </div>
-                                    <div style={{backgroundColor: 'rgb(255,255,255)'}} data-value="rgb(255,255,255)" class="colorpicker-color-bordered active" unselectable="on"></div>
+                                    <div style={{backgroundColor: 'rgb(255,255,255)'}} data-value="rgb(255,255,255)" className="colorpicker-color-bordered active" unselectable="on"></div>
                                     <div style={{backgroundColor: 'rgb(192,192,192)'}} data-value="rgb(192,192,192)" unselectable="on"></div>
                                     <div style={{backgroundColor: 'rgb(128,128,128)'}} data-value="rgb(128,128,128)" unselectable="on"></div>
                                     <div style={{backgroundColor: 'rgb(0,255,255)'}} data-value="rgb(0,255,255)" unselectable="on"></div>
                                     <div style={{backgroundColor: 'rgb(0, 162, 255)'}} data-value="rgb(0, 162, 255)" unselectable="on"></div>
                                     <div style={{backgroundColor: 'rgb(0,0,255)'}} data-value="rgb(0,0,255)" unselectable="on"></div>
                                     <div style={{backgroundColor: 'rgb(0,0,128)'}} data-value="rgb(0,0,128)" unselectable="on"></div>
-                                    <div style={{backgroundColor: 'rgb(0,128,128)'}} data-value="rgb(0,128,128)" unselectable="on" class=""></div>
+                                    <div style={{backgroundColor: 'rgb(0,128,128)'}} data-value="rgb(0,128,128)" unselectable="on" className=""></div>
                                     <div style={{backgroundColor: 'rgb(0,128,0)'}} data-value="rgb(0,128,0)" unselectable="on"></div>
                                     <div style={{backgroundColor: 'rgb(0,255,0)'}} data-value="rgb(0,255,0)" unselectable="on"></div>
                                     <div style={{backgroundColor: 'rgb(255,255,0)'}} data-value="rgb(255,255,0)" unselectable="on"></div>
                                     <div style={{backgroundColor: 'rgb(255,249,197)'}} data-value="rgb(255,249,197)" unselectable="on"></div>
                                     <div style={{backgroundColor: 'rgb(128,128,0)'}} data-value="rgb(128,128,0)" unselectable="on"></div>
                                     <div style={{backgroundColor: 'rgb(128,0,0)'}} data-value="rgb(128,0,0)" unselectable="on"></div>
-                                    <div style={{backgroundColor: 'rgb(255,0,0)'}} data-value="rgb(255,0,0)" unselectable="on" class=""></div>
+                                    <div style={{backgroundColor: 'rgb(255,0,0)'}} data-value="rgb(255,0,0)" unselectable="on" className=""></div>
                                     <div style={{backgroundColor: 'rgb(255,0,255)'}} data-value="rgb(255,0,255)" unselectable="on"></div>
-                                    <div style={{backgroundColor: 'rgb(128,0,128)'}} data-value="rgb(128,0,128)" unselectable="on" class=""></div>
+                                    <div style={{backgroundColor: 'rgb(128,0,128)'}} data-value="rgb(128,0,128)" unselectable="on" className=""></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <button class="edy-tb-cmd edy-tb-g showSource" title="Edit HTML source">
+                <button className="edy-tb-cmd edy-tb-g showSource" title="Edit HTML source">
                     <svg width="21" height="21" xmlns="http://www.w3.org/2000/svg">
                         <g transform="translate(0 6)" fill="#1B2124">
                             <path d="M6.314 2.42l-6.314 2.433v1.547l6.314 2.433v-1.671l-3.954-1.523v-.025l3.954-1.523v-1.671z" id="Shape"></path>
@@ -94,7 +94,7 @@ class Editor extends Component {
                     </svg>
                 </button>
             </div>
-            <textarea class="editable" style={{display: 'block'}} onChange={this.props.handler} value={this.props.value}></textarea>
+            <textarea className="editable" style={{display: 'block'}} onChange={this.props.handler} value={this.props.value}></textarea>
         </div>
         );
     }
