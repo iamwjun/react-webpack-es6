@@ -61,7 +61,8 @@ module.exports = (env, argv) => {
         config.devtool = 'source-map';
         config.devServer = {
             contentBase: './dist',
-            hot: true
+            hot: true,
+            historyApiFallback: true,
         };
     }
   
