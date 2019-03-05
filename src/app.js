@@ -6,6 +6,9 @@ import Routing from './router';
 import store from './store';
 import Layout from './page/Layout';
 
+var root = document.createElement('div');
+root.id = "root";
+document.body.appendChild(root);
 const app = document.getElementById('root')
 
 ReactDOM.render(<Provider store={store}>

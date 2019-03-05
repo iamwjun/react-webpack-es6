@@ -1,14 +1,27 @@
-import { applyMiddleware, createStore } from "redux"
+// import { applyMiddleware, createStore } from 'redux';
+// import promise from "redux-promise-middleware";
+// import ReduxThunk from "redux-thunk"
+// import { createLogger } from "redux-logger";
+// import reducer from "./reducers";
 
-import { createLogger } from 'redux-logger';
-import thunk from "redux-thunk"
-import promise from "redux-promise-middleware"
-// import * as promise from 'redux-promise'
+// const middleware = applyMiddleware(promise(), ReduxThunk, createLogger());
+// export default createStore(reducer, middleware);
 
-import reducer from "./reducers"
+// import { applyMiddleware, createStore } from "redux"
 
-const middleware = applyMiddleware(promise(), thunk, createLogger())
-// const middleware = [ reduxPromise ];
-// const store = createStore(reducer, applyMiddleware(...middleware));
+// import logger from "redux-logger"
+// import { default as thunk } from 'redux-thunk';
+// import promise from "redux-promise-middleware"
 
-export default createStore(reducer, middleware)
+// import reducer from "./reducers"
+
+// const middleware = [promise(), thunk, logger() ]
+
+// export default createStore(reducer, applyMiddleware(...middleware));
+
+import { createStore, applyMiddleware } from 'redux';
+import promise from "redux-promise-middleware";
+import reduxThunk from 'redux-thunk';
+import reducer from "./reducers";
+
+export default createStore(reducer, applyMiddleware(promise, reduxThunk));
