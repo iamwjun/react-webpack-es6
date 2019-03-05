@@ -1,8 +1,12 @@
+import PropTypes from 'prop-types';
 import React, { Component, Fragment } from 'react';
-import ReactDOM from 'react-dom';
 import { getParam } from '../actions/tweetsActions';
 
 class Page extends Component {
+    static propTypes = {
+        count: PropTypes.number
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -22,7 +26,7 @@ class Page extends Component {
 
     gotoPage() {
         if(this.state.gotoPage > Math.ceil(this.props.count/this.state.page_size)){
-            console.log('超过最大页了！'+ this.state.gotoPage, Math.ceil(this.props.count/this.state.page_size));
+            //console.log('超过最大页了！'+ this.state.gotoPage, Math.ceil(this.props.count/this.state.page_size));
             return false;
         }
         location.href = 'filter?page_size='+ this.state.page_size +'&page_num='+ this.state.gotoPage
@@ -32,7 +36,7 @@ class Page extends Component {
         let fanye;
         let count = Math.ceil(this.props.count/this.state.page_size);
 
-        console.log('条件：'+ count, this.state.page_num, this.state.page_size);
+        //console.log('条件：'+ count, this.state.page_num, this.state.page_size);
 
         if(this.state.page_num && this.state.page_num == 1){
             fanye = 

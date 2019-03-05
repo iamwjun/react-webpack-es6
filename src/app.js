@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import './assets/css/styles.css';
 import Routing from './router';
 import store from './store';
-import Layout from './page/Layout';
 
 var root = document.createElement('div');
 root.id = "root";

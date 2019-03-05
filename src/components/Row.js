@@ -1,7 +1,11 @@
+import PropTypes from 'prop-types';
 import React, { Component, Fragment } from 'react';
-import ReactDOM from 'react-dom';
 
 class Row extends Component {
+    static propTypes = {
+        data: PropTypes.array
+    }
+
     constructor(props) {
         super(props);
     }

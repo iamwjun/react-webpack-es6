@@ -1,16 +1,20 @@
+import Proptypes from 'prop-types';
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import Row from './Row';
 import Page from './Page';
 
 class List extends Component {
+    static proptypes = {
+        data: Proptypes.array,
+        count: Proptypes.number
+    }
     constructor(props) {
         super(props);
         // console.log(this.props.data)
     }
     
     handleClick() {
-		console.log(2);
+		//console.log(2);
     }
     
     render() {

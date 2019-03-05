@@ -1,13 +1,11 @@
-import React, { Component, Fragment } from 'react';
-import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import img from '../assets/images/login-w-icon.png';
-import code from '../assets/images/login.png';
-import axios from 'axios';
 import { connect } from 'react-redux';
-import { fetchUser, fetchToken } from '../actions/userActions';
+import { fetchToken } from '../actions/userActions';
 import Code from '../components/Code';
-import { subscribeToTimer } from '../components/socket.io-client';
 
+// https://medium.com/dailyjs/combining-react-with-socket-io-for-real-time-goodness-d26168429a34
 @connect((store) => {
     return {
         user: store.user.user,
@@ -15,8 +13,12 @@ import { subscribeToTimer } from '../components/socket.io-client';
     };
 })
 
-// https://medium.com/dailyjs/combining-react-with-socket-io-for-real-time-goodness-d26168429a34
 export default class Login extends Component {
+    static propTypes = {
+        dispatch: PropTypes.func,
+        user: PropTypes.array
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -32,7 +34,7 @@ export default class Login extends Component {
             enter: !this.state.enter,
             connect: false
         })
-        console.log(this.state)
+        //console.log(this.state)
     }
 
     fetchToken() {        
@@ -48,7 +50,7 @@ export default class Login extends Component {
     }
 
     render() {
-        const qrcode = this.state.code ? <Code sid={this.state.sid}/> : '';      
+        // const qrcode = this.state.code ? <Code sid={this.state.sid}/> : '';      
         return (          
             <div id="login">
                 <div key="1" id="login-code" className={this.state.enter ? 'login-base' : 'login-action'} onClick={this.fetchToken.bind(this)}>

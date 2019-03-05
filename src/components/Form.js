@@ -1,14 +1,13 @@
-import React, { Component, Fragment } from 'react';
-import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { fetchUser } from "../actions/userActions";
 import { addTweet, updateTweet, fetchConfig, fetchBaseURL } from "../actions/tweetsActions";
 import Editor from '../components/Editor';
-import axios, { post } from 'axios'
+import { post } from 'axios'
 import DatePicker from 'antd/lib/date-picker';
 import message from 'antd/lib/message';
-import Select from 'antd/lib/select';
-const Option = Select.Option;
+// import Select from 'antd/lib/select';
+// const Option = Select.Option;
 import 'antd/dist/antd.min.css';
 
 @connect((store) => {
@@ -20,6 +19,12 @@ import 'antd/dist/antd.min.css';
 })
 
 export default class Form extends Component{
+    static propTypes = {
+        dispatch: PropTypes.func,
+        data: PropTypes.array,
+        Option: PropTypes.object
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -45,7 +50,7 @@ export default class Form extends Component{
 
     handleInputChange(event) {
         const target = event.target;
-        console.log(target.type);
+        //console.log(target.type);
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
     
@@ -89,7 +94,7 @@ export default class Form extends Component{
     }
 
     actionTweet(event) {
-        console.log(this.state)
+        //console.log(this.state)
         if(this.state.title == '' || this.state.news_type == '' || this.state.summary == '' || this.state.body == ''){
             message.error('新闻标题、缩略图、摘要、新闻内容为必填项');
             return false

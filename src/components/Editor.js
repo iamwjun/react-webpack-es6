@@ -1,7 +1,13 @@
-import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import '../assets/css/editor.css';
 
 class Editor extends Component {
+    static propTypes = {
+        handler: PropTypes.func,
+        value: PropTypes.string
+    }
+
     constructor(props) {
         super(props);
     }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 
 class Query extends Component {
     constructor(props) {
@@ -13,7 +12,7 @@ class Query extends Component {
                 <label className="input_select" style={{display: 'none'}}>
                     <select name="J_type">
                         <option defaultValue value="-1">操作人员</option>
-                        <option value="14">黄瑞</option>
+                        <option value="14">瑞哥</option>
                         <option value="15">余少</option>
                     </select>
                 </label>

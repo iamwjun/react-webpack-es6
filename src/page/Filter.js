@@ -1,5 +1,5 @@
+import PropTypes from 'prop-types';
 import React, { Component, Fragment } from 'react';
-import ReactDOM from 'react-dom';
 import { connect } from "react-redux"
 import { fetchUser } from "../actions/userActions"
 import { fetchTweets } from "../actions/tweetsActions"
@@ -15,6 +15,10 @@ import List from '../components/List';
     };
 })
 export default class Index extends Component {
+    static propTypes = {
+        dispatch: PropTypes.func,
+        tweets: PropTypes.array
+    }
     constructor(props) {
         super(props);
         this.props.dispatch(fetchTweets('filter'))
@@ -30,7 +34,7 @@ export default class Index extends Component {
     }
     
     render() {
-        const { user, tweets } = this.props;
+        const { tweets } = this.props;
         
         if (tweets.news && !tweets.news.length) {
             // return <button onClick={this.fetchTweets.bind(this)}>load tweets</button>

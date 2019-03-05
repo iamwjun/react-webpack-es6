@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getConfig } from "./newsAction";
 import * as Cookies from 'js-cookie';
 
 export function fetchBaseURL(){
@@ -101,7 +102,7 @@ export function uploadImage(file) {
         formData.append('photo',file)
         axios.post("/api/uploadimage", {
             photo: formData,
-        }, getConfig(token))
+        }, getConfig(Cookies.get('token')))
         .then((response) => {
             if(response.data.status == '401'){
                 // location.href = '/login';

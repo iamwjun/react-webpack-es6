@@ -4,7 +4,7 @@ import * as Cookies from 'js-cookie';
 export function fetchToken() {
     return function(dispatch) {
         dispatch({type: "FETCH_TOKEN"});
-        console.log('执行次数')
+        //console.log('执行次数')
 
         try{
             let port = 5000;
@@ -32,16 +32,16 @@ export function fetchToken() {
             })
             socket.emit('join', {room: 'allow'});
             socket.on('message', function(data) {
-                console.log(data)
+                // console.log(data)
                 if(data.status == '200'){
                     Cookies.set('token', data.token, { expires: 1 });
                     location.href = '/';
                 }
             });
         }catch(exception){
-            console.log(exception)
+            // console.log(exception)
         }finally{   
-            console.log('fail')
+            // console.log('fail')
         }  
     }
 }
