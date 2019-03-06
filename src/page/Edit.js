@@ -15,7 +15,7 @@ import Form from "../components/Form";
 export default class Add extends Component {
     static propTypes = {
         dispatch: PropTypes.func,
-        tweets: PropTypes.array,
+        tweets: PropTypes.object,
         match: PropTypes.func
     }
     constructor(props) {

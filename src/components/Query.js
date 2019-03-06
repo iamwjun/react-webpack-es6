@@ -29,17 +29,17 @@ class Query extends Component {
                     <span className="select" style={{width: '85px'}}><b>是否热门</b><a href="javascript:;"><i className="icon_menu"></i></a></span>
                 </span>
                 <span className="dropdown">
-                <label className="input_select" style={{display: 'none'}}>
-                    <select name="J_attr">
-                        <option defaultValue value="-1">新闻类型</option>
-                        <option value="1">公司新闻</option>
-                        <option value="1">行业新闻</option>
-                    </select>
-                </label>
+                    <label className="input_select" style={{display: 'none'}}>
+                        <select name="J_attr">
+                            <option defaultValue value="-1">新闻类型</option>
+                            <option value="1">公司新闻</option>
+                            <option value="1">行业新闻</option>
+                        </select>
+                    </label>
                     <span className="select" style={{width: '85px'}}><b>新闻类型</b><a href="javascript:;"><i className="icon_menu"></i></a></span>
-                </span>              
-            	<label className="input_text w250" style={{marginRight:'0'}}>
-                <input type="text" name="ctitle" defaultValue="新闻名称关键词或编号" style={{color:'#000'}} />
+                </span>
+                <label className="input_text w250" style={{ marginRight:'0' }}>
+                    <input type="text" name="ctitle" defaultValue="新闻名称关键词或编号" style={{color:'#000'}} />
                 </label>
                 <input href="javascript:;" className="btn_serch_inp" name="button" />
             <div className="reselect cfix">

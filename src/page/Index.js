@@ -16,7 +16,7 @@ import List from '../components/List';
 export default class Index extends Component {
     static propTypes = {
         dispatch: PropTypes.func,
-        tweets: PropTypes.array
+        tweets: PropTypes.object
     }
     constructor(props) {
         super(props);

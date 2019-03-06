@@ -1,13 +1,14 @@
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Row from './Row';
 import Page from './Page';
 
-class List extends Component {
-    static proptypes = {
-        data: Proptypes.array,
-        count: Proptypes.number
+export default class List extends Component {
+    static propTypes = {
+        data: PropTypes.array,
+        count: PropTypes.number
     }
+
     constructor(props) {
         super(props);
         // console.log(this.props.data)
@@ -18,6 +19,7 @@ class List extends Component {
     }
     
     render() {
+        const { data, count } = this.props;
         return (
             <div className="mod_table">
                 <table width="100%" border="0" cellSpacing="0" cellPadding="0" className="pro_table new_tab" id="new_tab">
@@ -35,19 +37,16 @@ class List extends Component {
                             <th width="9%" align="center">操作</th>
                         </tr>
                     </thead>
-                    <tbody>
-                	    <Row data={this.props.data}/>
-                    </tbody>
+                    <tbody><Row data={data}/></tbody>
                 </table>
                 <div className="new_cutpage">
                     <label style={{paddingLeft:'10px'}}><input type="checkbox" id="demo" className="checkbox" onChange={this.handleClick}/>全选</label>
                     <input type="submit" name="del" className="btn_net_common" defaultValue="删除"/>              
                 </div>
                 <div className="new_cutpage fn-clear">
-                    <Page count={this.props.count}/>
+                    <Page count={count}/>
                 </div>
         </div>
         );
     }
 }
-export default List;
